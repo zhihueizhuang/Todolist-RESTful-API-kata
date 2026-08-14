@@ -106,6 +106,6 @@ const requestListener = (request,response)=>{
 }
 
 const server = http.createServer(requestListener);
-server.listen(3005);
+server.listen(process.env.PORT || 3005); //監聽3005埠口，若有設定環境變數PORT則使用該埠口
 
 
