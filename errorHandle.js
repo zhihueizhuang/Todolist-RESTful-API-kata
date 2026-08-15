@@ -1,15 +1,11 @@
-function errorHandle(response){
-    const headers = { //允許在不同的網域之間進行請求
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-With', 
-        'Access-Control-Allow-Origin': '*', 
-        'Access-Control-Allow-Methods': 'PATCH, POST, GET,OPTIONS,DELETE',
-        'Content-Type': 'application/json'
+const headers = require("./headers.js"); //引入headers.js檔案，取得headers物件
 
-    }
+function errorHandle(response,message = "請求格式不正確，請檢查後再重新送出"){ 
+
     response.writeHead(400,headers);
     response.write(JSON.stringify({
         "status":"false",
-        "message": "欄位未填寫正確，或無此欄位"
+        "message":message //動態變數，外面傳什麼就顯示什麼，沒傳就顯示預設值
     }));
     response.end();
 }
